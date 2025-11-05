@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Campus Study Spots</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    .spot { border: 1px solid #ddd; padding: 12px; margin-bottom: 10px; border-radius: 6px;}
+    label { margin-right: 8px; }
+  </style>
+</head>
+<body>
+  <h1>Find a Study Spot</h1>
+
+  <form action="/search" method="post" style="margin-bottom: 20px;">
+    <label>Noise Level:
+      <select name="noise_level">
+        <option>Any</option>
+        <option>Quiet</option>
+        <option>Moderate</option>
+        <option>Loud</option>
+      </select>
+    </label>
+
+    <label>WiFi Quality:
+      <select name="wifi_quality">
+        <option>Any</option>
+        <option>Strong</option>
+        <option>Average</option>
+        <option>Weak</option>
+      </select>
+    </label>
+
+    <button type="submit">Search</button>
+  </form>
+
+  {% if spots %}
+    {% for s in spots %}
+      <div class="spot">
+        <h3>{{ s.location_name }}</h3>
+        <div><strong>Noise:</strong> {{ s.noise_level or 'N/A' }} &nbsp;|&nbsp;
+             <strong>WiFi:</strong> {{ s.wifi_quality or 'N/A' }} &nbsp;|&nbsp;
+             <strong>Hours:</strong> {{ s.hours or 'N/A' }}</div>
+        <p>{{ s.description or '' }}</p>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No study spots yet. Seed the DB or add some.</p>
+  {% endif %}
+</body>
+</html>

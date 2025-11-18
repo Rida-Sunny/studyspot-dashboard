@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>StudySpot Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to StudySpot Dashboard</h1>
+        <h1>StudySpot Dashboard</h1>
         <div>
-            <a href="{{ url_for('dashboard') }}">Dashboard</a> |
-            <a href="{{ url_for('add_spot') }}">Add Spot</a>
+            <a href="{{ url_for('add_spot') }}">Add New Spot</a>
+            <a href="{{ url_for('index') }}">Home</a>
         </div>
-        <h2>All Study Spots</h2>
+
+        <h2>Search Spots</h2>
+        <form method="POST" action="{{ url_for('search') }}">
+            Location: <input type="text" name="location">
+            Noise: <input type="text" name="noise_level">
+            WiFi: <input type="text" name="wifi_quality">
+            <button type="submit">Search</button>
+        </form>
+
+        <h2>Available Spots</h2>
         <table>
             <tr>
                 <th>Name</th>

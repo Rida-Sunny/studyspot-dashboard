@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <a href="{{ url_for('index') }}">Back to Home</a>
+
+    {% if results %}
+        <ul>
+        {% for spot in results %}
+            <li>
+                <strong>{{ spot.name }}</strong> | Location: {{ spot.location }} | Seating: {{ spot.seating }} | Noise: {{ spot.noise_level }} | WiFi: {{ spot.wifi_quality }} | Hours: {{ spot.hours }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No study spots match your search criteria.</p>
+    {% endif %}
+</body>
+</html>

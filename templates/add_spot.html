@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Study Spot</title>
+</head>
+<body>
+    <h1>Add a New Study Spot</h1>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+          {% for msg in messages %}
+            <li>{{ msg }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Location: <input type="text" name="location" required><br>
+        Seating: <input type="text" name="seating"><br>
+        Noise Level: <input type="text" name="noise_level"><br>
+        Hours: <input type="text" name="hours"><br>
+        WiFi Quality: <input type="text" name="wifi_quality"><br>
+        <button type="submit">Add Spot</button>
+    </form>
+    <a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>
